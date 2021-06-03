@@ -1,0 +1,629 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ScreeningToolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__EFMigrationsHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="DepartmentHeads">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="ContactNo" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="DepartmentHeads" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="nvarchar(max)" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="ContactNo" Type="nvarchar(max)" />
+          <Property Name="ContactPerson" Type="nvarchar(max)" />
+          <Property Name="ContactPersonNo" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="Barangay" Type="nvarchar(max)" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Status" Type="nvarchar(max)" />
+          <Property Name="DepartmentId" Type="int" Nullable="false" />
+          <Property Name="PickUpPoint" Type="nvarchar(max)" />
+          <Property Name="Birthday" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Vaccinated" Type="int" />
+          <Property Name="FirstDose" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="SecondDose" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Logs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Action" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar(max)" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QREntry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScreenLogId" Type="int" Nullable="false" />
+          <Property Name="QRKey" Type="nvarchar(max)" />
+          <Property Name="CreatedAt" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QurantineDetectors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="nvarchar(max)" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DateQuaratineSet" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScreenLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="nvarchar(max)" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="ContactNo" Type="nvarchar(max)" />
+          <Property Name="ContactPerson" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="Barangay" Type="nvarchar(max)" />
+          <Property Name="Temperature" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Q1" Type="int" Nullable="false" />
+          <Property Name="Q2" Type="int" Nullable="false" />
+          <Property Name="Q3" Type="int" Nullable="false" />
+          <Property Name="Q4" Type="int" Nullable="false" />
+          <Property Name="Q5" Type="int" Nullable="false" />
+          <Property Name="Q6" Type="int" Nullable="false" />
+          <Property Name="Q7" Type="int" Nullable="false" />
+          <Property Name="Q8" Type="int" Nullable="false" />
+          <Property Name="Q9" Type="int" Nullable="false" />
+          <Property Name="Q10" Type="int" Nullable="false" />
+          <Property Name="Q11" Type="int" Nullable="false" />
+          <Property Name="Q12" Type="int" Nullable="false" />
+          <Property Name="Q13" Type="int" Nullable="false" />
+          <Property Name="Q14" Type="int" Nullable="false" />
+          <Property Name="Q15" Type="int" Nullable="false" />
+          <Property Name="RemarksQ1" Type="nvarchar(max)" />
+          <Property Name="RemarksQ2" Type="nvarchar(max)" />
+          <Property Name="RemarksQ3" Type="nvarchar(max)" />
+          <Property Name="RemarksQ4" Type="nvarchar(max)" />
+          <Property Name="RemarksQ5" Type="nvarchar(max)" />
+          <Property Name="RemarksQ6" Type="nvarchar(max)" />
+          <Property Name="RemarksQ7" Type="nvarchar(max)" />
+          <Property Name="RemarksQ8" Type="nvarchar(max)" />
+          <Property Name="RemarksQ9" Type="nvarchar(max)" />
+          <Property Name="RemarksQ10" Type="nvarchar(max)" />
+          <Property Name="RemarksQ11" Type="nvarchar(max)" />
+          <Property Name="QRKey" Type="nvarchar(max)" />
+          <Property Name="EntryStatus" Type="nvarchar(max)" />
+          <Property Name="Remarks" Type="nvarchar(max)" />
+          <Property Name="Result" Type="int" Nullable="false" />
+          <Property Name="WorkPlace" Type="nvarchar(max)" />
+          <Property Name="CreatedAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="TransactionDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Q16" Type="int" Nullable="false" />
+          <Property Name="Q17" Type="int" Nullable="false" />
+          <Property Name="Q18" Type="int" Nullable="false" />
+          <Property Name="Q19" Type="int" Nullable="false" />
+          <Property Name="Q20" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_Departments_Companies_CompanyId">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Departments" Type="Self.Departments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Departments">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Departments_DepartmentId">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ScreeningToolModelStoreContainer">
+          <EntitySet Name="__EFMigrationsHistory" EntityType="Self.__EFMigrationsHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DepartmentHeads" EntityType="Self.DepartmentHeads" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Logs" EntityType="Self.Logs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QREntry" EntityType="Self.QREntry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QurantineDetectors" EntityType="Self.QurantineDetectors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScreenLogs" EntityType="Self.ScreenLogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Departments_Companies_CompanyId" Association="Self.FK_Departments_Companies_CompanyId">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Departments" EntitySet="Departments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Departments_DepartmentId" Association="Self.FK_Employees_Departments_DepartmentId">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ScreeningToolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__EFMigrationsHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Departments" Relationship="Self.FK_Departments_Companies_CompanyId" FromRole="Companies" ToRole="Departments" />
+        </EntityType>
+        <EntityType Name="DepartmentHead">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentHeads" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_Departments_Companies_CompanyId" FromRole="Departments" ToRole="Companies" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employees_Departments_DepartmentId" FromRole="Departments" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPerson" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPersonNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Barangay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+          <Property Name="PickUpPoint" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Vaccinated" Type="Int32" />
+          <Property Name="FirstDose" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="SecondDose" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_Employees_Departments_DepartmentId" FromRole="Employees" ToRole="Departments" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Action" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="QREntry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScreenLogId" Type="Int32" Nullable="false" />
+          <Property Name="QRKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="QurantineDetector">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DateQuaratineSet" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="ScreenLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPerson" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Barangay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Temperature" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Q1" Type="Int32" Nullable="false" />
+          <Property Name="Q2" Type="Int32" Nullable="false" />
+          <Property Name="Q3" Type="Int32" Nullable="false" />
+          <Property Name="Q4" Type="Int32" Nullable="false" />
+          <Property Name="Q5" Type="Int32" Nullable="false" />
+          <Property Name="Q6" Type="Int32" Nullable="false" />
+          <Property Name="Q7" Type="Int32" Nullable="false" />
+          <Property Name="Q8" Type="Int32" Nullable="false" />
+          <Property Name="Q9" Type="Int32" Nullable="false" />
+          <Property Name="Q10" Type="Int32" Nullable="false" />
+          <Property Name="Q11" Type="Int32" Nullable="false" />
+          <Property Name="Q12" Type="Int32" Nullable="false" />
+          <Property Name="Q13" Type="Int32" Nullable="false" />
+          <Property Name="Q14" Type="Int32" Nullable="false" />
+          <Property Name="Q15" Type="Int32" Nullable="false" />
+          <Property Name="RemarksQ1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemarksQ2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemarksQ3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemarksQ4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemarksQ5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemarksQ6" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemarksQ7" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemarksQ8" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemarksQ9" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemarksQ10" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemarksQ11" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="QRKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EntryStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Result" Type="Int32" Nullable="false" />
+          <Property Name="WorkPlace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Q16" Type="Int32" Nullable="false" />
+          <Property Name="Q17" Type="Int32" Nullable="false" />
+          <Property Name="Q18" Type="Int32" Nullable="false" />
+          <Property Name="Q19" Type="Int32" Nullable="false" />
+          <Property Name="Q20" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Departments_Companies_CompanyId">
+          <End Role="Companies" Type="Self.Company" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Departments" Type="Self.Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Departments">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Departments_DepartmentId">
+          <End Role="Departments" Type="Self.Department" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ScreeningToolEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__EFMigrationsHistory" EntityType="Self.C__EFMigrationsHistory" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Companies" EntityType="Self.Company" />
+          <EntitySet Name="DepartmentHeads" EntityType="Self.DepartmentHead" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Logs" EntityType="Self.Log" />
+          <EntitySet Name="QREntries" EntityType="Self.QREntry" />
+          <EntitySet Name="QurantineDetectors" EntityType="Self.QurantineDetector" />
+          <EntitySet Name="ScreenLogs" EntityType="Self.ScreenLog" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Departments_Companies_CompanyId" Association="Self.FK_Departments_Companies_CompanyId">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Departments" EntitySet="Departments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Departments_DepartmentId" Association="Self.FK_Employees_Departments_DepartmentId">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ScreeningToolModelStoreContainer" CdmEntityContainer="ScreeningToolEntities">
+          <EntitySetMapping Name="C__EFMigrationsHistory">
+            <EntityTypeMapping TypeName="ScreeningToolModel.C__EFMigrationsHistory">
+              <MappingFragment StoreEntitySet="__EFMigrationsHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="ScreeningToolModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="ScreeningToolModel.Company">
+              <MappingFragment StoreEntitySet="Companies">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DepartmentHeads">
+            <EntityTypeMapping TypeName="ScreeningToolModel.DepartmentHead">
+              <MappingFragment StoreEntitySet="DepartmentHeads">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="ScreeningToolModel.Department">
+              <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="DepartmentHeads" ColumnName="DepartmentHeads" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="ScreeningToolModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="ContactPersonNo" ColumnName="ContactPersonNo" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Barangay" ColumnName="Barangay" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="PickUpPoint" ColumnName="PickUpPoint" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Vaccinated" ColumnName="Vaccinated" />
+                <ScalarProperty Name="FirstDose" ColumnName="FirstDose" />
+                <ScalarProperty Name="SecondDose" ColumnName="SecondDose" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="ScreeningToolModel.Log">
+              <MappingFragment StoreEntitySet="Logs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QREntries">
+            <EntityTypeMapping TypeName="ScreeningToolModel.QREntry">
+              <MappingFragment StoreEntitySet="QREntry">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ScreenLogId" ColumnName="ScreenLogId" />
+                <ScalarProperty Name="QRKey" ColumnName="QRKey" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QurantineDetectors">
+            <EntityTypeMapping TypeName="ScreeningToolModel.QurantineDetector">
+              <MappingFragment StoreEntitySet="QurantineDetectors">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateQuaratineSet" ColumnName="DateQuaratineSet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScreenLogs">
+            <EntityTypeMapping TypeName="ScreeningToolModel.ScreenLog">
+              <MappingFragment StoreEntitySet="ScreenLogs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Barangay" ColumnName="Barangay" />
+                <ScalarProperty Name="Temperature" ColumnName="Temperature" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Q1" ColumnName="Q1" />
+                <ScalarProperty Name="Q2" ColumnName="Q2" />
+                <ScalarProperty Name="Q3" ColumnName="Q3" />
+                <ScalarProperty Name="Q4" ColumnName="Q4" />
+                <ScalarProperty Name="Q5" ColumnName="Q5" />
+                <ScalarProperty Name="Q6" ColumnName="Q6" />
+                <ScalarProperty Name="Q7" ColumnName="Q7" />
+                <ScalarProperty Name="Q8" ColumnName="Q8" />
+                <ScalarProperty Name="Q9" ColumnName="Q9" />
+                <ScalarProperty Name="Q10" ColumnName="Q10" />
+                <ScalarProperty Name="Q11" ColumnName="Q11" />
+                <ScalarProperty Name="Q12" ColumnName="Q12" />
+                <ScalarProperty Name="Q13" ColumnName="Q13" />
+                <ScalarProperty Name="Q14" ColumnName="Q14" />
+                <ScalarProperty Name="Q15" ColumnName="Q15" />
+                <ScalarProperty Name="RemarksQ1" ColumnName="RemarksQ1" />
+                <ScalarProperty Name="RemarksQ2" ColumnName="RemarksQ2" />
+                <ScalarProperty Name="RemarksQ3" ColumnName="RemarksQ3" />
+                <ScalarProperty Name="RemarksQ4" ColumnName="RemarksQ4" />
+                <ScalarProperty Name="RemarksQ5" ColumnName="RemarksQ5" />
+                <ScalarProperty Name="RemarksQ6" ColumnName="RemarksQ6" />
+                <ScalarProperty Name="RemarksQ7" ColumnName="RemarksQ7" />
+                <ScalarProperty Name="RemarksQ8" ColumnName="RemarksQ8" />
+                <ScalarProperty Name="RemarksQ9" ColumnName="RemarksQ9" />
+                <ScalarProperty Name="RemarksQ10" ColumnName="RemarksQ10" />
+                <ScalarProperty Name="RemarksQ11" ColumnName="RemarksQ11" />
+                <ScalarProperty Name="QRKey" ColumnName="QRKey" />
+                <ScalarProperty Name="EntryStatus" ColumnName="EntryStatus" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="WorkPlace" ColumnName="WorkPlace" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="Q16" ColumnName="Q16" />
+                <ScalarProperty Name="Q17" ColumnName="Q17" />
+                <ScalarProperty Name="Q18" ColumnName="Q18" />
+                <ScalarProperty Name="Q19" ColumnName="Q19" />
+                <ScalarProperty Name="Q20" ColumnName="Q20" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ScreeningToolModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

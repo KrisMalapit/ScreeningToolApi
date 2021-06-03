@@ -1,0 +1,406 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ScreeningToolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="DepartmentHeads">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="ContactNo" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="DepartmentHeads" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="nvarchar(max)" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="ContactNo" Type="nvarchar(max)" />
+          <Property Name="ContactPerson" Type="nvarchar(max)" />
+          <Property Name="ContactPersonNo" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="Barangay" Type="nvarchar(max)" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Status" Type="nvarchar(max)" />
+          <Property Name="DepartmentId" Type="int" Nullable="false" />
+          <Property Name="PickUpPoint" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ScreenLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="nvarchar(max)" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="ContactNo" Type="nvarchar(max)" />
+          <Property Name="ContactPerson" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="Barangay" Type="nvarchar(max)" />
+          <Property Name="Temperature" Type="int" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Q1" Type="int" Nullable="false" />
+          <Property Name="Q2" Type="int" Nullable="false" />
+          <Property Name="Q3" Type="int" Nullable="false" />
+          <Property Name="Q4" Type="int" Nullable="false" />
+          <Property Name="Q5" Type="int" Nullable="false" />
+          <Property Name="Q6" Type="int" Nullable="false" />
+          <Property Name="Q7" Type="int" Nullable="false" />
+          <Property Name="Q8" Type="int" Nullable="false" />
+          <Property Name="Q9" Type="int" Nullable="false" />
+          <Property Name="Q10" Type="int" Nullable="false" />
+          <Property Name="Q11" Type="int" Nullable="false" />
+          <Property Name="RemarksQ1" Type="nvarchar(max)" />
+          <Property Name="RemarksQ2" Type="nvarchar(max)" />
+          <Property Name="RemarksQ3" Type="nvarchar(max)" />
+          <Property Name="RemarksQ4" Type="nvarchar(max)" />
+          <Property Name="RemarksQ5" Type="nvarchar(max)" />
+          <Property Name="RemarksQ6" Type="nvarchar(max)" />
+          <Property Name="RemarksQ7" Type="nvarchar(max)" />
+          <Property Name="RemarksQ8" Type="nvarchar(max)" />
+          <Property Name="RemarksQ9" Type="nvarchar(max)" />
+          <Property Name="RemarksQ10" Type="nvarchar(max)" />
+          <Property Name="RemarksQ11" Type="nvarchar(max)" />
+          <Property Name="Remarks" Type="nvarchar(max)" />
+          <Property Name="Result" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="TransactionDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Q12" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Departments_Companies_CompanyId">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Departments" Type="Self.Departments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Departments">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Departments_DepartmentId">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ScreeningToolModelStoreContainer">
+          <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DepartmentHeads" EntityType="Self.DepartmentHeads" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScreenLogs" EntityType="Self.ScreenLogs" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Departments_Companies_CompanyId" Association="Self.FK_Departments_Companies_CompanyId">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Departments" EntitySet="Departments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Departments_DepartmentId" Association="Self.FK_Employees_Departments_DepartmentId">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ScreeningToolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ScreenLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPerson" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Barangay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Q1" Type="Int32" Nullable="false" />
+          <Property Name="Q2" Type="Int32" Nullable="false" />
+          <Property Name="Q3" Type="Int32" Nullable="false" />
+          <Property Name="Q4" Type="Int32" Nullable="false" />
+          <Property Name="Q5" Type="Int32" Nullable="false" />
+          <Property Name="Q6" Type="Int32" Nullable="false" />
+          <Property Name="Q7" Type="Int32" Nullable="false" />
+          <Property Name="Q8" Type="Int32" Nullable="false" />
+          <Property Name="Q9" Type="Int32" Nullable="false" />
+          <Property Name="Q10" Type="Int32" Nullable="false" />
+          <Property Name="Q11" Type="Int32" Nullable="false" />
+          <Property Name="RemarksQ1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemarksQ2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemarksQ3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemarksQ4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemarksQ5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemarksQ6" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemarksQ7" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemarksQ8" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemarksQ9" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemarksQ10" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemarksQ11" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Result" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Q12" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ScreeningToolEntitiesLocal" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ScreenLogs" EntityType="Self.ScreenLog" />
+          <EntitySet Name="Employees" EntityType="ScreeningToolModel.Employee" />
+          <EntitySet Name="Companies" EntityType="ScreeningToolModel.Company" />
+          <EntitySet Name="DepartmentHeads" EntityType="ScreeningToolModel.DepartmentHead" />
+          <EntitySet Name="Departments" EntityType="ScreeningToolModel.Department" />
+          <AssociationSet Name="FK_Departments_Companies_CompanyId" Association="ScreeningToolModel.FK_Departments_Companies_CompanyId">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Department" EntitySet="Departments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Departments_DepartmentId" Association="ScreeningToolModel.FK_Employees_Departments_DepartmentId">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Barangay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPerson" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPersonNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+          <Property Name="PickUpPoint" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Department" Relationship="ScreeningToolModel.FK_Employees_Departments_DepartmentId" FromRole="Employee" ToRole="Department" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Departments" Relationship="ScreeningToolModel.FK_Departments_Companies_CompanyId" FromRole="Company" ToRole="Department" />
+        </EntityType>
+        <EntityType Name="DepartmentHead">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentHeads" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Company" Relationship="ScreeningToolModel.FK_Departments_Companies_CompanyId" FromRole="Department" ToRole="Company" />
+          <NavigationProperty Name="Employees" Relationship="ScreeningToolModel.FK_Employees_Departments_DepartmentId" FromRole="Department" ToRole="Employee" />
+        </EntityType>
+        <Association Name="FK_Departments_Companies_CompanyId">
+          <End Type="ScreeningToolModel.Company" Role="Company" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ScreeningToolModel.Department" Role="Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Department">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Departments_DepartmentId">
+          <End Type="ScreeningToolModel.Department" Role="Department" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ScreeningToolModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ScreeningToolModelStoreContainer" CdmEntityContainer="ScreeningToolEntitiesLocal">
+          <EntitySetMapping Name="ScreenLogs">
+            <EntityTypeMapping TypeName="ScreeningToolModel.ScreenLog">
+              <MappingFragment StoreEntitySet="ScreenLogs">
+                <ScalarProperty Name="Q12" ColumnName="Q12" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Barangay" ColumnName="Barangay" />
+                <ScalarProperty Name="Temperature" ColumnName="Temperature" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Q1" ColumnName="Q1" />
+                <ScalarProperty Name="Q2" ColumnName="Q2" />
+                <ScalarProperty Name="Q3" ColumnName="Q3" />
+                <ScalarProperty Name="Q4" ColumnName="Q4" />
+                <ScalarProperty Name="Q5" ColumnName="Q5" />
+                <ScalarProperty Name="Q6" ColumnName="Q6" />
+                <ScalarProperty Name="Q7" ColumnName="Q7" />
+                <ScalarProperty Name="Q8" ColumnName="Q8" />
+                <ScalarProperty Name="Q9" ColumnName="Q9" />
+                <ScalarProperty Name="Q10" ColumnName="Q10" />
+                <ScalarProperty Name="Q11" ColumnName="Q11" />
+                <ScalarProperty Name="RemarksQ1" ColumnName="RemarksQ1" />
+                <ScalarProperty Name="RemarksQ2" ColumnName="RemarksQ2" />
+                <ScalarProperty Name="RemarksQ3" ColumnName="RemarksQ3" />
+                <ScalarProperty Name="RemarksQ4" ColumnName="RemarksQ4" />
+                <ScalarProperty Name="RemarksQ5" ColumnName="RemarksQ5" />
+                <ScalarProperty Name="RemarksQ6" ColumnName="RemarksQ6" />
+                <ScalarProperty Name="RemarksQ7" ColumnName="RemarksQ7" />
+                <ScalarProperty Name="RemarksQ8" ColumnName="RemarksQ8" />
+                <ScalarProperty Name="RemarksQ9" ColumnName="RemarksQ9" />
+                <ScalarProperty Name="RemarksQ10" ColumnName="RemarksQ10" />
+                <ScalarProperty Name="RemarksQ11" ColumnName="RemarksQ11" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="ScreeningToolModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="PickUpPoint" ColumnName="PickUpPoint" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="ContactPersonNo" ColumnName="ContactPersonNo" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="Barangay" ColumnName="Barangay" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="ScreeningToolModel.Company">
+              <MappingFragment StoreEntitySet="Companies">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DepartmentHeads">
+            <EntityTypeMapping TypeName="ScreeningToolModel.DepartmentHead">
+              <MappingFragment StoreEntitySet="DepartmentHeads">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="ScreeningToolModel.Department">
+              <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DepartmentHeads" ColumnName="DepartmentHeads" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
