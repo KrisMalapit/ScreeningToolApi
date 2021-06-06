@@ -16,7 +16,7 @@ namespace ScreeningToolApi.Models
     public partial class ScreeningToolEntities : DbContext
     {
         public ScreeningToolEntities()
-            : base("name=ScreeningToolEntities")
+            : base("name=ScreeningToolEntitiesLive")
         {
         }
     

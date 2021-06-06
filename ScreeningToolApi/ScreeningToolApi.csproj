@@ -374,6 +374,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Reports\rptAttendanceMonitoring.rdlc" />
+    <EmbeddedResource Include="Reports\rptNonCompliant.rdlc" />
     <EmbeddedResource Include="Reports\rptScreeningSummary.rdlc" />
     <EmbeddedResource Include="Reports\rptScreeningSummaryMinesite.rdlc" />
   </ItemGroup>

@@ -12,7 +12,7 @@
   <xs:element name="dsScreenTool" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsScreenTool" msprop:Generator_UserDSName="dsScreenTool">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="ScreenLogs" msprop:Generator_TableClassName="ScreenLogsDataTable" msprop:Generator_TableVarName="tableScreenLogs" msprop:Generator_RowChangedName="ScreenLogsRowChanged" msprop:Generator_TablePropName="ScreenLogs" msprop:Generator_RowDeletingName="ScreenLogsRowDeleting" msprop:Generator_RowChangingName="ScreenLogsRowChanging" msprop:Generator_RowEvHandlerName="ScreenLogsRowChangeEventHandler" msprop:Generator_RowDeletedName="ScreenLogsRowDeleted" msprop:Generator_RowClassName="ScreenLogsRow" msprop:Generator_UserTableName="ScreenLogs" msprop:Generator_RowEvArgName="ScreenLogsRowChangeEvent">
+        <xs:element name="ScreenLogs" msprop:Generator_TableClassName="ScreenLogsDataTable" msprop:Generator_TableVarName="tableScreenLogs" msprop:Generator_TablePropName="ScreenLogs" msprop:Generator_RowDeletingName="ScreenLogsRowDeleting" msprop:Generator_RowChangingName="ScreenLogsRowChanging" msprop:Generator_RowEvHandlerName="ScreenLogsRowChangeEventHandler" msprop:Generator_RowDeletedName="ScreenLogsRowDeleted" msprop:Generator_UserTableName="ScreenLogs" msprop:Generator_RowChangedName="ScreenLogsRowChanged" msprop:Generator_RowEvArgName="ScreenLogsRowChangeEvent" msprop:Generator_RowClassName="ScreenLogsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="EmployeeId" msprop:Generator_ColumnVarNameInTable="columnEmployeeId" msprop:Generator_ColumnPropNameInRow="EmployeeId" msprop:Generator_ColumnPropNameInTable="EmployeeIdColumn" msprop:Generator_UserColumnName="EmployeeId" type="xs:string" minOccurs="0" />
@@ -29,6 +29,17 @@
               <xs:element name="Barangay" msprop:Generator_ColumnVarNameInTable="columnBarangay" msprop:Generator_ColumnPropNameInRow="Barangay" msprop:Generator_ColumnPropNameInTable="BarangayColumn" msprop:Generator_UserColumnName="Barangay" type="xs:string" minOccurs="0" />
               <xs:element name="Department" msprop:Generator_ColumnVarNameInTable="columnDepartment" msprop:Generator_ColumnPropNameInRow="Department" msprop:Generator_ColumnPropNameInTable="DepartmentColumn" msprop:Generator_UserColumnName="Department" type="xs:string" minOccurs="0" />
               <xs:element name="WorkPlace" msprop:Generator_ColumnVarNameInTable="columnWorkPlace" msprop:Generator_ColumnPropNameInRow="WorkPlace" msprop:Generator_ColumnPropNameInTable="WorkPlaceColumn" msprop:Generator_UserColumnName="WorkPlace" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="NonCompliant" msprop:Generator_TableClassName="NonCompliantDataTable" msprop:Generator_TableVarName="tableNonCompliant" msprop:Generator_TablePropName="NonCompliant" msprop:Generator_RowDeletingName="NonCompliantRowDeleting" msprop:Generator_RowChangingName="NonCompliantRowChanging" msprop:Generator_RowEvHandlerName="NonCompliantRowChangeEventHandler" msprop:Generator_RowDeletedName="NonCompliantRowDeleted" msprop:Generator_UserTableName="NonCompliant" msprop:Generator_RowChangedName="NonCompliantRowChanged" msprop:Generator_RowEvArgName="NonCompliantRowChangeEvent" msprop:Generator_RowClassName="NonCompliantRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionDate" msprop:Generator_ColumnVarNameInTable="columnTransactionDate" msprop:Generator_ColumnPropNameInRow="TransactionDate" msprop:Generator_ColumnPropNameInTable="TransactionDateColumn" msprop:Generator_UserColumnName="TransactionDate" type="xs:string" minOccurs="0" />
+              <xs:element name="EmployeeId" msprop:Generator_ColumnVarNameInTable="columnEmployeeId" msprop:Generator_ColumnPropNameInRow="EmployeeId" msprop:Generator_ColumnPropNameInTable="EmployeeIdColumn" msprop:Generator_UserColumnName="EmployeeId" type="xs:string" minOccurs="0" />
+              <xs:element name="EmployeeName" msprop:Generator_ColumnVarNameInTable="columnEmployeeName" msprop:Generator_ColumnPropNameInRow="EmployeeName" msprop:Generator_ColumnPropNameInTable="EmployeeNameColumn" msprop:Generator_UserColumnName="EmployeeName" type="xs:string" minOccurs="0" />
+              <xs:element name="FromDate" msprop:Generator_ColumnVarNameInTable="columnFromDate" msprop:Generator_ColumnPropNameInRow="FromDate" msprop:Generator_ColumnPropNameInTable="FromDateColumn" msprop:Generator_UserColumnName="FromDate" type="xs:string" minOccurs="0" />
+              <xs:element name="ToDate" msprop:Generator_ColumnVarNameInTable="columnToDate" msprop:Generator_ColumnPropNameInRow="ToDate" msprop:Generator_ColumnPropNameInTable="ToDateColumn" msprop:Generator_UserColumnName="ToDate" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
